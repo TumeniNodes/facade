@@ -65,37 +65,37 @@ end]]--
 
 facade.register_centerstone("_clay_centerstone", "default:clay",
 		{cracky = 2, oddly_breakable_by_hand = 2, stone = 1},
-		{"clay_centerstone.png"},
+		{"default_clay.png^fcenterstone.png"},
         "Clay Centerstone",
 		default.node_sound_stone_defaults())
 
 facade.register_centerstone("_desert_sandstone_centerstone", "default:desert_sandstone",
 		{cracky = 2, oddly_breakable_by_hand = 2, stone = 1},
-		{"desert_sandstone_centerstone.png"},
+		{"default_desert_sandstone.png^fcenterstone.png"},
         "Desert Sandstone Centerstone",
 		default.node_sound_stone_defaults())
 
 facade.register_centerstone("_desert_stone_centerstone", "default:desert_stone",
 		{cracky = 2, oddly_breakable_by_hand = 2, stone = 1},
-		{"desert_stone_centerstone.png"},
+		{"default_desert_stone.png^fcenterstone.png"},
         "Desert Stone Centerstone",
 		default.node_sound_stone_defaults())
 
 facade.register_centerstone("_sandstone_centerstone", "default:sandstone",
 		{cracky = 2, oddly_breakable_by_hand = 2, stone = 1},
-		{"sandstone_centerstone.png"},
+		{"default_sandstone.png^fcenterstone.png"},
         "Sandstone Centerstone",
 		default.node_sound_stone_defaults())
 
 facade.register_centerstone("_silver_sandstone_centerstone", "default:silver_sandstone",
 		{cracky = 2, oddly_breakable_by_hand = 2, stone = 1},
-		{"silver_sandstone_centerstone.png"},
+		{"default_silver_sandstone.png^fcenterstone.png"},
         "Silver Sandstone Centerstone",
 		default.node_sound_stone_defaults())
 
 facade.register_centerstone("_stone_centerstone", "default:stone",
 		{cracky = 2, oddly_breakable_by_hand = 2, stone = 1},
-		{"stone_centerstone.png"},
+		{"default_stone.png^fcenterstone.png"},
         "Stone Centerstone",
 		default.node_sound_stone_defaults())
 		
