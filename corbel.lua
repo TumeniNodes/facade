@@ -96,8 +96,8 @@ facade.register_corbel_and_corbel_corner_and_corbel_inner("_clay_corbel", "defau
 		{cracky = 2, oddly_breakable_by_hand = 2, stone = 1},
 		{"default_clay.png"},
 		"Clay Corbel",
-        "Clay Corbal Corner",
-        "Clay Corbel Inner",
+        	"Clay Corbel Corner",
+        	"Clay Corbel Inner",
 		default.node_sound_stone_defaults())
 
 
@@ -106,7 +106,7 @@ facade.register_corbel_and_corbel_corner_and_corbel_inner("_desert_sandstone_cor
 		{"default_desert_sandstone.png"},
 		"Desert Sandstone Corbel",
 		"Desert Sandstone Corbel Corner",
-        "Desert Sandstone Corbel Inner",
+        	"Desert Sandstone Corbel Inner",
 		default.node_sound_stone_defaults())
 
 
@@ -115,7 +115,7 @@ facade.register_corbel_and_corbel_corner_and_corbel_inner("_desert_stone_corbel"
 		{"default_desert_stone.png"},
 		"Desert Stone Corbel",
 		"Desert Stone Corbel Corner",
-        "Desert Stone Corbel Inner",
+        	"Desert Stone Corbel Inner",
 		default.node_sound_stone_defaults())
 
 
@@ -124,7 +124,7 @@ facade.register_corbel_and_corbel_corner_and_corbel_inner("_sandstone_corbel", "
 		{"default_sandstone.png"},
 		"Sandstone Corbel",
 		"Sandstone Corbel Corner",
-        "Sandstone Corbel Inner",
+        	"Sandstone Corbel Inner",
 		default.node_sound_stone_defaults())
 
 
@@ -133,7 +133,7 @@ facade.register_corbel_and_corbel_corner_and_corbel_inner("_silver_sandstone_cor
 		{"default_silver_sandstone.png"},
 		"Silver Sandstone Corbel",
 		"Silver Sandstone Corbel Corner",
-        "Silver Sandstone Corbel Inner",
+        	"Silver Sandstone Corbel Inner",
 		default.node_sound_stone_defaults())
 
 
@@ -142,5 +142,5 @@ facade.register_corbel_and_corbel_corner_and_corbel_inner("_stone_corbel", "defa
 		{"default_stone.png"},
 		"Stone Corbel",
 		"Stone Corbel Corner",
-        "Stone Corbel Inner",
+        	"Stone Corbel Inner",
 		default.node_sound_stone_defaults())
