@@ -14,8 +14,7 @@ minetest.register_node("facade:bannerstone_" .. subname, {
 	"default_" .. subname .. ".png",
 	"default_" .. subname .. ".png",
 	"default_" .. subname .. ".png",
-	"default_" .. subname .. ".png^facade_bannerstone.png",
-	},
+	"default_" .. subname .. ".png^facade_bannerstone.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	is_ground_content = false,
@@ -79,7 +78,13 @@ function facade.register_centerstone(subname, recipeitem, description)
 minetest.register_node("facade:centerstone_" .. subname, {
 	description = description,
 	drawtype = "nodebox",
-	tiles = {"" .. modname.. "_" .. subname .. ".png^facade_centerstone.png",
+	tiles = {
+	"default_" .. subname .. ".png^facade_centerstone.png",
+	"default_" .. subname .. ".png^facade_centerstone.png",
+	"default_" .. subname .. ".png^facade_centerstone.png",
+	"default_" .. subname .. ".png^facade_centerstone.png",
+	"default_" .. subname .. ".png^facade_centerstone.png",
+	"default_" .. subname .. ".png^facade_centerstone.png"}
 	paramtype = "light",
 	is_ground_content = false,
 	groups = {cracky = 2, oddly_breakable_by_hand = 2, stone = 1},
