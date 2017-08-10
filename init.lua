@@ -17,6 +17,7 @@ minetest.register_node("facade:bannerstone_" .. subname, {
 	"default_" .. subname .. ".png^facade_bannerstone.png",
 	},
 	paramtype = "light",
+	paramtype2 = "facedir",
 	is_ground_content = false,
 	groups = {cracky = 2, oddly_breakable_by_hand = 2, stone = 1},
 	sounds = default.node_sound_stone_defaults(),
@@ -37,7 +38,7 @@ minetest.register_node("facade:bannerstone_" .. subname, {
 })
 end
 
---Node will be called facade:bannerstone_facade_<subname>
+--Node will be called facade:bannerstone_corner_<subname>
 function facade.register_bannerstone_corner(subname, recipeitem, description)
 minetest.register_node("facade:bannerstone_corner_" .. subname, {
 	description = description,
@@ -50,7 +51,6 @@ minetest.register_node("facade:bannerstone_corner_" .. subname, {
 	"default_" .. subname .. ".png^facade_bannerstone.png",
 	"default_" .. subname .. ".png^facade_bannerstone.png"},
 	paramtype = "light",
-	paramtype2 = "facedir",
 	is_ground_content = false,
 	groups = {cracky = 2, oddly_breakable_by_hand = 2, stone = 1},
 	sounds = default.node_sound_stone_defaults(),
@@ -87,7 +87,6 @@ minetest.register_node("facade:centerstone_" .. subname, {
 	"default_" .. subname .. ".png^facade_centerstone.png",
 	"default_" .. subname .. ".png^facade_centerstone.png"},
 	paramtype = "light",
-	paramtype2 = "facedir",
 	is_ground_content = false,
 	groups = {cracky = 2, oddly_breakable_by_hand = 2, stone = 1},
 	sounds = default.node_sound_stone_defaults(),
@@ -147,6 +146,7 @@ minetest.register_node("facade:column_" .. subname, {
 	"default_" .. subname .. ".png^facade_column.png",
 	},
 	paramtype = "light",
+	paramtype2 = "facedir",
 	is_ground_content = false,
 	groups = {cracky = 2, oddly_breakable_by_hand = 2, stone = 1},
 	sounds = default.node_sound_stone_defaults(),
@@ -186,7 +186,6 @@ minetest.register_node("facade:column_corner_" .. subname, {
 	"default_" .. subname .. ".png^facade_column.png",
 	"default_" .. subname .. ".png^facade_column.png"},
 	paramtype = "light",
-	paramtype2 = "facedir",
 	is_ground_content = false,
 	groups = {cracky = 2, oddly_breakable_by_hand = 2, stone = 1},
 	sounds = default.node_sound_stone_defaults(),
