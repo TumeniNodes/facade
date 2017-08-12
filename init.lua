@@ -347,14 +347,14 @@ end
 
 
 if minetest.get_modpath( "darkage") then
---	facade.register_facade_nodes("darkage", "basalt", "darkage:basalt", "Basalt")
---	facade.register_facade_nodes("darkage", "chalk", "darkage:chalk", "Chalk")
---	facade.register_facade_nodes("darkage", "gneiss", "darkage:gneiss", "Gneiss")
+	facade.register_facade_nodes("darkage", "basalt", "darkage:basalt", "Basalt")
+	facade.register_facade_nodes("darkage", "chalk", "darkage:chalk", "Chalk")
+	facade.register_facade_nodes("darkage", "gneiss", "darkage:gneiss", "Gneiss")
 	facade.register_facade_nodes("darkage", "marble", "darkage:marble", "Marble")
 	facade.register_facade_nodes("darkage", "ors", "darkage:ors", "Ors")
---	facade.register_facade_nodes("darkage", "schist", "darkage:schist", "Schist")
+	facade.register_facade_nodes("darkage", "schist", "darkage:schist", "Schist")
 	facade.register_facade_nodes("darkage", "serpentine", "darkage:serpentine", "Serpentine")
---	facade.register_facade_nodes("darkage", "shale", "darkage:shale", "Shale")
+	facade.register_facade_nodes("darkage", "shale", "darkage:shale", "Shale")
 	facade.register_facade_nodes("darkage", "slate", "darkage:slate", "Slate")
 end
 
