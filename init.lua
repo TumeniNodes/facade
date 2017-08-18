@@ -51,6 +51,7 @@ function facade.register_bannerstone_corner(modname, subname, recipeitem, desc)
 		"" .. modname.. "_" .. subname .. ".png^facade_bannerstone.png",
 		"" .. modname.. "_" .. subname .. ".png^facade_bannerstone.png"},
 		paramtype = "light",
+		paramtype2 = "facedir",
 		is_ground_content = false,
 		groups = {cracky = 3, oddly_breakable_by_hand = 2, stone = 1},
 		sounds = default.node_sound_stone_defaults(),
@@ -181,6 +182,7 @@ function facade.register_column_corner(modname, subname, recipeitem, desc)
 		"" .. modname.. "_" .. subname .. ".png^facade_column.png"
 		},
 		paramtype = "light",
+		paramtype2 = "facedir",
 		is_ground_content = false,
 		groups = {cracky = 3, oddly_breakable_by_hand = 2, stone = 1},
 		sounds = default.node_sound_stone_defaults(),
