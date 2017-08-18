@@ -298,6 +298,103 @@ end
 
 
 --------------------------
+--- Carved Stones
+--------------------------
+
+--Node will be called facade:<subname>_carved_stone_a
+function facade.register_carved_stone_a(modname, subname, recipeitem, desc)
+	minetest.register_node("facade:" .. subname .. "_carved_stone_a", {
+		description = desc .. " Carved Stone A",
+		drawtype = "nodebox",
+        tiles = {
+		"" .. modname.. "_" .. subname .. ".png",
+		"" .. modname.. "_" .. subname .. ".png",
+		"" .. modname.. "_" .. subname .. ".png",
+		"" .. modname.. "_" .. subname .. ".png",
+		"" .. modname.. "_" .. subname .. ".png",
+		"" .. modname.. "_" .. subname .. ".png^facade_carved_stone_a.png"},
+		paramtype = "light",
+		paramtype2 = "facedir",
+		is_ground_content = false,
+		groups = {cracky = 3, oddly_breakable_by_hand = 2, stone = 1},
+		sounds = default.node_sound_stone_defaults(),
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{-0.5, -0.5, -0.4375, 0.5, 0.5, 0.5},
+			{-0.5, 0.4375, -0.5, 0.5, 0.5, -0.4375},
+			{-0.5, -0.5, -0.5, 0.5, -0.4375, 0.5},
+			{-0.4375, -0.375, -0.5, -0.3125, 0.375, -0.4375},
+			{-0.5, -0.375, -0.5, -0.3125, -0.25, 0.5},
+			{-0.4375, 0.25, -0.5, 0.4375, 0.375, 0.5},
+			{0.3125, -0.125, -0.5, 0.4375, 0.25, 0.5},
+			{-0.1875, -0.375, -0.5, 0.5, -0.25, 0.5},
+			{-0.1875, -0.25, -0.5, -0.0625, 0.125, 0.5},
+			{0.0625, -0.125, -0.5, 0.3125, 0, 0.5},
+			{-0.0625, 0, -0.5, 0.1875, 0.125, 0.5},
+			},
+		},
+		selection_box = {
+			type = "fixed",
+			fixed = {
+				{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+			},
+		},
+	})
+end
+
+--Node will be called facade:<subname>_carved_stone_a_corner
+function facade.register_carved_stone_a_corner(modname, subname, recipeitem, desc)
+	minetest.register_node("facade:" .. subname .. "_carved_stone_a_corner", {
+		description = desc .. " Carved Stone A Corner",
+		drawtype = "nodebox",
+        tiles = {
+		"" .. modname.. "_" .. subname .. ".png",
+		"" .. modname.. "_" .. subname .. ".png",
+		"" .. modname.. "_" .. subname .. ".png",
+		"" .. modname.. "_" .. subname .. ".png^facade_carved_stone_a.png",
+		"" .. modname.. "_" .. subname .. ".png",
+		"" .. modname.. "_" .. subname .. ".png^facade_carved_stone_a.png"},
+		paramtype = "light",
+		paramtype2 = "facedir",
+		is_ground_content = false,
+		groups = {cracky = 3, oddly_breakable_by_hand = 2, stone = 1},
+		sounds = default.node_sound_stone_defaults(),
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{-0.4375, -0.5, -0.4375, 0.5, 0.5, 0.5},
+			{-0.5, 0.4375, -0.5, 0.5, 0.5, -0.4375},
+			{-0.5, -0.5, -0.5, 0.5, -0.4375, 0.5},
+			{-0.4375, -0.375, -0.5, -0.3125, 0.375, -0.4375},
+			{-0.5, -0.375, -0.5, -0.3125, -0.25, 0.1875},
+			{-0.4375, 0.25, -0.5, 0.4375, 0.375, 0.5},
+			{0.3125, -0.125, -0.5, 0.4375, 0.25, 0.5},
+			{-0.1875, -0.375, -0.5, 0.5, -0.25, 0.5},
+			{-0.1875, -0.25, -0.5, -0.0625, 0.125, 0.5},
+			{0.0625, -0.125, -0.5, 0.3125, 0, 0.5},
+			{-0.0625, 0, -0.5, 0.1875, 0.125, 0.5},
+			{-0.5, 0.4375, -0.5, 0.5, 0.5, 0.5},
+			{-0.5, -0.125, -0.4375, 0.5, 0.375, -0.3125},
+			{-0.5, 0.25, -0.3125, 0.5, 0.375, 0.4375},
+			{-0.5, -0.375, 0.3125, 0.4375, 0.375, 0.4375},
+			{-0.5, -0.375, 0.3125, 0.4375, -0.25, 0.5},
+			{-0.5, -0.125, -0.3125, 0.4375, 0, -0.0625},
+			{-0.5, 0, -0.1875, 0.4375, 0.125, 0.1875},
+			{-0.5, -0.25, 0.0625, 0.4375, 0.125, 0.1875},
+			},
+		},
+		selection_box = {
+			type = "fixed",
+			fixed = {
+				{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+			},
+		},
+	})
+end
+
+
+--------------------------
 --Register Nodes/Materials
 --------------------------
 function facade.register_facade_nodes(modname, subname, recipeitem, desc)
@@ -309,6 +406,8 @@ function facade.register_facade_nodes(modname, subname, recipeitem, desc)
 	facade.register_corbel(modname, subname, recipeitem, desc)
 	facade.register_corbel_corner(modname, subname, recipeitem, desc)
 	facade.register_corbel_corner_inner(modname, subname, recipeitem, desc)
+	facade.register_carved_stone_a(modname, subname, recipeitem, desc)
+	facade.register_carved_stone_a_corner(modname, subname, recipeitem, desc)
 end
 
 
@@ -363,3 +462,8 @@ if minetest.get_modpath( "nether") then
 	facade.register_facade_nodes("nether", "rack", "nether:rack", "Netherrack")
 end
 
+
+--[[if minetest.get_modpath( "lapis") then
+	facade.register_facade_nodes("lapis", "lapis_block", "lapis:lapis_block", "Lapis")
+	facade.register_facade_nodes("lapis", "lapis_lazurite", "lapis:lazurite", "Lazurite")
+end]]--
