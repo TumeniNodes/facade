@@ -1,5 +1,7 @@
 facade = {}
 
+local wehavechisels =  minetest.get_modpath("mychisel")
+
 --------------
 --Bannerstones
 --------------
@@ -410,8 +412,21 @@ function facade.register_facade_nodes(modname, subname, recipeitem, desc)
 	facade.register_corbel_corner_inner(modname, subname, recipeitem, desc)
 	facade.register_carved_stone_a(modname, subname, recipeitem, desc)
 	facade.register_carved_stone_a_corner(modname, subname, recipeitem, desc)
+	if wehavechisels then                                                       -- register all nodes with mychisel mod to use them without creative priv
+	    chisel.register_node("facade",subname, recipeitem, "bannerstone")
+	    chisel.register_node("facade",subname, recipeitem, "bannerstone_corner")
+	    chisel.register_node("facade",subname, recipeitem, "centerstone")
+	    chisel.register_node("facade",subname, recipeitem, "column")
+	    chisel.register_node("facade",subname, recipeitem, "column_corner")
+	    chisel.register_node("facade",subname, recipeitem, "corbel")
+	    chisel.register_node("facade",subname, recipeitem, "corbel_corner")
+	    chisel.register_node("facade",subname, recipeitem, "corbel_corner_inner")
+	    chisel.register_node("facade",subname, recipeitem, "carved_stone_a")
+	    chisel.register_node("facade",subname, recipeitem, "carved_stone_a_corner")
+	end
 end
 
+if wehavechisels then chisel.mods["facade"] = 10 end                                -- register the total number of different designs in this mod with mychisel
 
 facade.register_facade_nodes("default", "clay", "default:clay", "Clay")
 facade.register_facade_nodes("default", "desert_sandstone", "default:desert_sandstone", "Desert Sandstone")
