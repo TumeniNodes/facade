@@ -426,7 +426,7 @@ function facade.register_facade_nodes(modname, subname, recipeitem, desc)
 	end
 end
 
-if wehavechisels then chisel.mods["facade"] = 10 end                                -- register the total number of different designs in this mod with mychisel
+if wehavechisels then chisel.add_mod("facade",10) end                                -- register the total number of different designs in this mod with mychisel
 
 facade.register_facade_nodes("default", "clay", "default:clay", "Clay")
 facade.register_facade_nodes("default", "desert_sandstone", "default:desert_sandstone", "Desert Sandstone")
