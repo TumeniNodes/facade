@@ -513,6 +513,46 @@ end
 
 
 --------------------------
+--- Corner Bricks
+--------------------------
+
+--Node will be called facade:<subname>_corner_bricks
+function facade.register_corner_bricks(modname, subname, recipeitem, desc)
+	minetest.register_node("facade:" .. subname .. "_corner_bricks", {
+		description = desc .. " Corner Bricks",
+		drawtype = "nodebox",
+		tiles = {
+		"" .. modname.. "_" .. subname .. "_brick.png"},
+--		"" .. modname.. "_" .. subname .. ".png",
+--		"" .. modname.. "_" .. subname .. ".png",
+--		"" .. modname.. "_" .. subname .. ".png",
+--		"" .. modname.. "_" .. subname .. ".png",
+--		"" .. modname.. "_" .. subname .. ".png"},
+		paramtype = "light",
+		paramtype2 = "facedir",
+		is_ground_content = false,
+		groups = {cracky = 3, oddly_breakable_by_hand = 2, stone = 1},
+		sounds = default.node_sound_stone_defaults(),
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{-0.5625, -0.5, 0.4375, -0.5, 0, 1},
+				{-0.5, -0.5, 0.4375, 0, 0, 0.5},
+				{-0.5625, 0, 0.5, -0.5, 0.5, 1.5},
+				{-0.5625, 0, 0.4375, 0.5, 0.5, 0.5},
+			},
+		},
+--		selection_box = {
+--			type = "fixed",
+--			fixed = {
+--				{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+--			},
+--		},
+	})
+end
+
+
+--------------------------
 --Register Nodes/Materials
 --------------------------
 function facade.register_facade_nodes(modname, subname, recipeitem, desc)
@@ -529,6 +569,7 @@ function facade.register_facade_nodes(modname, subname, recipeitem, desc)
 	facade.register_rgspro(modname, subname, recipeitem, desc)
 	facade.register_rgspro_inner_corner(modname, subname, recipeitem, desc)
 	facade.register_rgspro_outer_corner(modname, subname, recipeitem, desc)
+	facade.register_corner_bricks(modname, subname, recipeitem, desc)
 	if wehavechisels then                                                       -- register all nodes with mychisel mod to use them without creative priv
 		chisel.register_node("facade",subname, recipeitem, "bannerstone")
 		chisel.register_node("facade",subname, recipeitem, "bannerstone_corner")
@@ -543,6 +584,7 @@ function facade.register_facade_nodes(modname, subname, recipeitem, desc)
 		chisel.register_node("facade",subname, recipeitem, "rgspro")
 		chisel.register_node("facade",subname, recipeitem, "rgspro_inner_corner")
 		chisel.register_node("facade",subname, recipeitem, "rgspro_outer_corner")
+		chisel.register_node("facade",subname, recipeitem, "corner_bricks")
 	end
 end
 
