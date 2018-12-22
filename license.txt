@@ -26,6 +26,7 @@ corbel_inner_corner.lua
 rgspro.lua
 rgspro_corner.lua
 rgspro_inner.lua
+corner_bricks.lua
 
 bannerstone.nbe
 bannerstone_corner.nbe
@@ -39,3 +40,4 @@ corbel_inner_corner.nbe
 rgspro.nbe
 rgspro_corner.nbe
 rgspro_inner.nbe
+corner_bricks.nbe
