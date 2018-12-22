@@ -1,0 +1,9 @@
+custom textures for facade
+Copyright (C) 2016 - 2018 TumeniNodes
+Attribution - ShareAlike 4.0 International (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/
+=========================================================
+facade_bannerstone.png
+facade_carved_stone_a.png
+facade_cornerstone.png
+facade_column.png

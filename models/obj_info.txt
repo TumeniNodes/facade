@@ -1,3 +1,6 @@
 These .obj files were created using Rubenwardy's NodeBoxEditor https://forum.minetest.net/viewtopic.php?f=14&t=2840&hilit=NBE (which is a very nice and useful tool)
 
 They do support textures but, do not support UV mapping, and they will still render as individual objects. They are provided merely as a reference for anyone who may whish to create .obj models using Blender, or other similar 3D modeling software.
+
+However, there is a method with Blender, in which one can delete duplicate faces, etc., which would make these closely workable to a native .obj file, and help with UV mapping.
+It would be up to you to do a search on this method, as I have no interest in doing so.

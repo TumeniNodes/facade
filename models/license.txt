@@ -1,0 +1,17 @@
+source files for facade
+Copyright (C) 2016 - 2018 TumeniNodes
+Attribution - ShareAlike 4.0 International (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/
+=========================================================
+bannerstone.obj
+bannerstone_corner.obj
+carved_stone_a.obj
+carved_stone_a_corner.obj
+column.obj
+column_corner.obj
+corbel.obj
+corbel_corner.obj
+corbel_inner_corner.obj
+rgspro.obj
+rgspro_corner.obj
+rgspro_inner.obj
