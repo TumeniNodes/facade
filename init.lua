@@ -422,8 +422,8 @@ function facade.register_rgspro(modname, subname, recipeitem, desc)
 		node_box = {
 			type = "fixed",
 			fixed = {
-				{-0.5, -0.5, 0.375, 0.5, 0.5, 0.5},
-				{-0.5, -0.3125, 0.25, 0.5, 0.5, 0.5},
+				{-0.5, -0.5, 0.375, 0.5, -0.3125, 0.5},
+				{-0.5, -0.3125, 0.25, 0.5, -0.125, 0.5},
 				{-0.5, -0.125, 0.125, 0.5, 0.5, 0.5},
 			},
 		},
@@ -456,11 +456,11 @@ function facade.register_rgspro_inner_corner(modname, subname, recipeitem, desc)
 		node_box = {
 			type = "fixed",
 			fixed = {
-				{-0.5, -0.5, 0.375, 0.5, 0.5, 0.5},
-				{-0.5, -0.3125, 0.25, 0.5, 0.5, 0.5},
+				{-0.5, -0.5, 0.375, 0.5, -0.3125, 0.5},
+				{-0.5, -0.3125, 0.25, 0.5, -0.125, 0.5},
 				{-0.5, -0.125, 0.125, 0.5, 0.5, 0.5},
-				{0.375, -0.5, -0.5, 0.5, 0.5, 0.375},
-				{0.25, -0.3125, -0.5, 0.5, 0.5, 0.25},
+				{0.375, -0.5, -0.5, 0.5, -0.3125, 0.375},
+				{0.25, -0.3125, -0.5, 0.5, -0.0625, 0.25},
 				{0.125, -0.125, -0.5, 0.5, 0.5, 0.125},
 			},
 		},
@@ -494,11 +494,11 @@ function facade.register_rgspro_outer_corner(modname, subname, recipeitem, desc)
 		node_box = {
 			type = "fixed",
 			fixed = {
-				{-0.5, -0.5, 0.375, 0.5, 0.5, 0.5},
-				{-0.5, -0.3125, 0.25, 0.5, 0.5, 0.5},
+				{-0.5, -0.5, 0.375, 0.5, -0.3125, 0.5},
+				{-0.5, -0.3125, 0.25, 0.5, -0.0625, 0.5},
 				{-0.5, -0.125, 0.125, 0.5, 0.5, 0.5},
-				{-0.625, -0.5, 0.375, -0.5, 0.5, 1.5},
-				{-0.75, -0.3125, 0.25, -0.5, 0.5, 1.5},
+				{-0.625, -0.5, 0.375, -0.5, -0.3125, 1.5},
+				{-0.75, -0.3125, 0.25, -0.5, -0.125, 1.5},
 				{-0.875, -0.125, 0.125, -0.5, 0.5, 1.5},
 			},
 		},
@@ -518,33 +518,34 @@ end
 
 --Node will be called facade:<subname>_corner_bricks
 function facade.register_corner_bricks(modname, subname, recipeitem, desc)
-      if not string.match(recipeitem,"clay") then                         -- do not for clay things that is ugly
-	minetest.register_node("facade:" .. subname .. "_corner_bricks", {
-		description = desc .. " Corner Bricks",
-		drawtype = "nodebox",
-		tiles = {
-		"" .. modname.. "_" .. subname .. "_brick.png"},
-		paramtype = "light",
-		paramtype2 = "facedir",
-		is_ground_content = false,
-		groups = {cracky = 3, oddly_breakable_by_hand = 2, stone = 1},
-		sounds = default.node_sound_stone_defaults(),
-		node_box = {
-			type = "fixed",
-			fixed = {
-				{-0.5625, -0.5, 0.4375, -0.5, 0, 1},
-				{-0.5, -0.5, 0.4375, 0, 0, 0.5},
-				{-0.5625, 0, 0.5, -0.5, 0.5, 1.5},
-				{-0.5625, 0, 0.4375, 0.5, 0.5, 0.5},
+	if not string.match(recipeitem,"clay")
+	then	-- do not do for clay things that is ugly
+		minetest.register_node("facade:" .. subname .. "_corner_bricks", {
+			description = desc .. " Corner Bricks",
+			drawtype = "nodebox",
+			tiles = {
+			"" .. modname.. "_" .. subname .. "_brick.png"},
+			paramtype = "light",
+			paramtype2 = "facedir",
+			is_ground_content = false,
+			groups = {cracky = 3, oddly_breakable_by_hand = 2, stone = 1},
+			sounds = default.node_sound_stone_defaults(),
+			node_box = {
+				type = "fixed",
+				fixed = {
+					{-0.5625, -0.5, 0.4375, -0.5, 0, 1},
+					{-0.5, -0.5, 0.4375, 0, 0, 0.5},
+					{-0.5625, 0, 0.5, -0.5, 0.5, 1.5},
+					{-0.5625, 0, 0.4375, 0.5, 0.5, 0.5},
+				},
 			},
-		},
---		selection_box = {
---			type = "fixed",
---			fixed = {
---				{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+--			selection_box = {
+--				type = "fixed",
+--				fixed = {
+--					{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+--				},
 --			},
---		},
-	})
+		})
 	end
 end
 
