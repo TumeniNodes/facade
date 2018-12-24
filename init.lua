@@ -422,9 +422,9 @@ function facade.register_rgspro(modname, subname, recipeitem, desc)
 		node_box = {
 			type = "fixed",
 			fixed = {
-				{-0.5, -0.5, 0.375, 0.5, 0.5, 0.5},
-				{-0.5, -0.3125, 0.25, 0.5, 0.5, 0.5},
-				{-0.5, -0.125, 0.125, 0.5, 0.5, 0.5},
+				{-0.5, -0.5, 0.375, 0.5, -0.3125, 0.5},
+			{-0.5, -0.3125, 0.25, 0.5, -0.125, 0.5},
+			{-0.5, -0.125, 0.125, 0.5, 0.5, 0.5},
 			},
 		},
 --		selection_box = {
@@ -456,12 +456,12 @@ function facade.register_rgspro_inner_corner(modname, subname, recipeitem, desc)
 		node_box = {
 			type = "fixed",
 			fixed = {
-				{-0.5, -0.5, 0.375, 0.5, 0.5, 0.5},
-				{-0.5, -0.3125, 0.25, 0.5, 0.5, 0.5},
-				{-0.5, -0.125, 0.125, 0.5, 0.5, 0.5},
-				{0.375, -0.5, -0.5, 0.5, 0.5, 0.375},
-				{0.25, -0.3125, -0.5, 0.5, 0.5, 0.25},
-				{0.125, -0.125, -0.5, 0.5, 0.5, 0.125},
+				{-0.5, -0.5, 0.375, 0.5, -0.3125, 0.5},
+			{-0.5, -0.3125, 0.25, 0.5, -0.125, 0.5},
+			{-0.5, -0.125, 0.125, 0.5, 0.5, 0.5},
+			{0.375, -0.5, -0.5, 0.5, -0.3125, 0.375},
+			{0.25, -0.3125, -0.5, 0.5, -0.0625, 0.25},
+			{0.125, -0.125, -0.5, 0.5, 0.5, 0.125},
 			},
 		},
 --		selection_box = {
@@ -494,12 +494,12 @@ function facade.register_rgspro_outer_corner(modname, subname, recipeitem, desc)
 		node_box = {
 			type = "fixed",
 			fixed = {
-				{-0.5, -0.5, 0.375, 0.5, 0.5, 0.5},
-				{-0.5, -0.3125, 0.25, 0.5, 0.5, 0.5},
-				{-0.5, -0.125, 0.125, 0.5, 0.5, 0.5},
-				{-0.625, -0.5, 0.375, -0.5, 0.5, 1.5},
-				{-0.75, -0.3125, 0.25, -0.5, 0.5, 1.5},
-				{-0.875, -0.125, 0.125, -0.5, 0.5, 1.5},
+				{-0.5, -0.5, 0.375, 0.5, -0.3125, 0.5},
+			{-0.5, -0.3125, 0.25, 0.5, -0.0625, 0.5},
+			{-0.5, -0.125, 0.125, 0.5, 0.5, 0.5},
+			{-0.625, -0.5, 0.375, -0.5, -0.3125, 1.5},
+			{-0.75, -0.3125, 0.25, -0.5, -0.125, 1.5},
+			{-0.875, -0.125, 0.125, -0.5, 0.5, 1.5},
 			},
 		},
 --		selection_box = {
@@ -518,7 +518,6 @@ end
 
 --Node will be called facade:<subname>_corner_bricks
 function facade.register_corner_bricks(modname, subname, recipeitem, desc)
-      if not string.match(recipeitem,"clay") then                         -- do not for clay things that is ugly
 	minetest.register_node("facade:" .. subname .. "_corner_bricks", {
 		description = desc .. " Corner Bricks",
 		drawtype = "nodebox",
@@ -545,7 +544,6 @@ function facade.register_corner_bricks(modname, subname, recipeitem, desc)
 --			},
 --		},
 	})
-	end
 end
 
 
@@ -582,12 +580,10 @@ function facade.register_facade_nodes(modname, subname, recipeitem, desc)
 		chisel.register_node("facade",subname, recipeitem, "rgspro_inner_corner")
 		chisel.register_node("facade",subname, recipeitem, "rgspro_outer_corner")
 		chisel.register_node("facade",subname, recipeitem, "corner_bricks")
-		
-		
 	end
 end
 
-if wehavechisels then chisel.add_mod("facade",14) end                                -- register the total number of different designs in this mod with mychisel
+if wehavechisels then chisel.add_mod("facade",10) end                                -- register the total number of different designs in this mod with mychisel
 
 facade.register_facade_nodes("default", "clay", "default:clay", "Clay")
 facade.register_facade_nodes("default", "desert_sandstone", "default:desert_sandstone", "Desert Sandstone")
