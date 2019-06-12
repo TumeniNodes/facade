@@ -4,7 +4,9 @@
 -- not rely on using recipes.
 
 
--- balancing output per 1 input block with respect to apparent volume of output shape
+-- Balancing output per 1 input block with respect to apparent volume of output shape.
+-- All current shapes are added, but shapes not present in this table will still be produced 
+-- one at a time — if that is the desired quantity, adding them is not required.
 local output_ratios = {
 	bannerstone = 1,
 	bannerstone_corner = 1,
@@ -22,9 +24,10 @@ local output_ratios = {
 	corner_bricks = 2,
 }
 
--- the material to be used for buttons when no material is actually loaded
--- it should be a generic material for which all the facade shapes are defined
+-- The material to be used for buttons when no material is actually loaded.
+-- It should be a generic material for which all the facade shapes are defined.
 local demo_material = "default:stone"
+
 
 
 local function prepare_formspec (material_name)
@@ -36,6 +39,7 @@ local function prepare_formspec (material_name)
 	"size[8,11;]"..
 	"label[0,0;" .. "Choose shape to produce:" .. "]"..
 
+	-- row 1, blocky shapes
 	"item_image_button[0,0.5;1,1;" .. output .. "_bannerstone" .. ";bannerstone; ]"..
 	"item_image_button[1,0.5;1,1;" .. output .. "_bannerstone_corner" .. ";bannerstone_corner; ]"..
 	"item_image_button[2,0.5;1,1;" .. output .. "_centerstone" .. ";centerstone; ]"..
@@ -44,10 +48,12 @@ local function prepare_formspec (material_name)
 	"item_image_button[5,0.5;1,1;" .. output .. "_column" .. ";column; ]"..
 	"item_image_button[6,0.5;1,1;" .. output .. "_column_corner" .. ";column_corner; ]"..
 
+	-- row 2, corbel
 	"item_image_button[0,1.5;1,1;" .. output .. "_corbel" .. ";corbel; ]"..
 	"item_image_button[1,1.5;1,1;" .. output .. "_corbel_corner_inner" .. ";corbel_corner_inner; ]"..
 	"item_image_button[2,1.5;1,1;" .. output .. "_corbel_corner" .. ";corbel_corner; ]"..
 
+	-- row 3, cornice
 	"item_image_button[0,2.5;1,1;" .. output .. "_rgspro" .. ";rgspro; ]"..
 	"item_image_button[1,2.5;1,1;" .. output .. "_rgspro_inner_corner" .. ";rgspro_inner_corner; ]"..
 	"item_image_button[2,2.5;1,1;" .. output .. "_rgspro_outer_corner" .. ";rgspro_outer_corner; ]"
@@ -219,7 +225,9 @@ local function form_handler(pos, formname, fields, sender)
 		end
 
 		-- output quantities are adjusted to preserve roughly same mass of resulting products
-		result = result .. " " .. output_ratios[shape]
+		if output_ratios[shape] then
+			result = result .. " " .. output_ratios[shape]
+		end
 
 		if not inv:room_for_item("dst", result) then
 			return
