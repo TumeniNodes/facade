@@ -28,6 +28,10 @@ local output_ratios = {
 -- It should be a generic material for which all the facade shapes are defined.
 local demo_material = "default:stone"
 
+-- Whether the facade should obey area protection for the inventories (as machines in technic mod)
+-- or allow anybody to use them, but disallow the removal of machine itself (like circular saw in moreblocks)
+local protect_inventories = false
+
 
 
 local function prepare_formspec (material_name)
@@ -101,7 +105,7 @@ end
 -- update the buttons to show shapes made from the actual material
 local function update_formspec_put (pos, listname, index, stack, player)
 
-	if minetest.is_protected(pos, player:get_player_name()) then
+	if protect_inventories and minetest.is_protected(pos, player:get_player_name()) then
 		return
 	end
 
@@ -125,7 +129,7 @@ end
 -- update the buttons to show shapes made from demo material if all material is removed
 local function update_formspec_take (pos, listname, index, stack, player)
 
-	if minetest.is_protected(pos, player:get_player_name()) then
+	if protect_inventories and minetest.is_protected(pos, player:get_player_name()) then
 		return
 	end
 
@@ -148,7 +152,7 @@ end
 -- disallow putting in materials which are not supported
 local function check_inventory_put (pos, listname, index, stack, player)
 
-	if minetest.is_protected(pos, player:get_player_name()) then
+	if protect_inventories and minetest.is_protected(pos, player:get_player_name()) then
 		return 0
 	end
 
@@ -170,7 +174,7 @@ end
 
 local function check_inventory_take (pos, listname, index, stack, player)
 
-	if minetest.is_protected(pos, player:get_player_name()) then
+	if protect_inventories and minetest.is_protected(pos, player:get_player_name()) then
 		return 0
 	end
 
@@ -185,7 +189,7 @@ end
 
 local function check_inventory_move (pos, from_list, from_index, to_list, to_index, count, player)
 	
-	if minetest.is_protected(pos, player:get_player_name()) then
+	if protect_inventories and minetest.is_protected(pos, player:get_player_name()) then
 		return 0
 	end
 
@@ -197,7 +201,7 @@ end
 -- process the form fields and convert source material to desired shapes
 local function form_handler(pos, formname, fields, sender)
 
-	if minetest.is_protected(pos, sender:get_player_name()) then
+	if protect_inventories and minetest.is_protected(pos, sender:get_player_name()) then
 		return
 	end
 
@@ -244,12 +248,24 @@ end
 
 
 local function check_removability (pos, player)
+
+	local meta = minetest.get_meta(pos)
+	local owner = meta:set_string("owner")
+	local pname = player:get_player_name()
+	local inv = meta:get_inventory()
+
+	-- owner may always remove the device
+	if owner and owner ~= "" and pname and pname ~= "" and owner == pname then
+		if inv:is_empty("src") and inv:is_empty("dst") then
+			return true
+		else
+			return false
+		end
+	end
+
 	if minetest.is_protected(pos, player:get_player_name()) then
 		return false
 	end
-
-	local meta = minetest.get_meta(pos)
-	local inv = meta:get_inventory()
 
 	if inv:is_empty("src") and inv:is_empty("dst") then
 		return true
@@ -301,11 +317,20 @@ minetest.register_node("facade:shaper", {
 	legacy_facedir_simple = true,
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("infotext", "Facade Shaper")
 		meta:set_string("formspec", prepare_formspec(demo_material))
 		local inv = meta:get_inventory()
 		inv:set_size("src", 1)
 		inv:set_size("dst", 4)
+	end,
+	after_place_node = function(pos, placer)
+		local meta = minetest.get_meta(pos)
+		local owner = placer and placer:get_player_name() or ""
+		meta:set_string("owner", owner)
+		if owner then
+			meta:set_string("infotext", ("Facade Shaper (owned by %s)"):format(owner))
+		else
+			meta:set_string("infotext", "Facade Shaper")
+		end
 	end,
 	can_dig = check_removability,
 	allow_metadata_inventory_put  = check_inventory_put,
