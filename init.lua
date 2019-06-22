@@ -548,6 +548,8 @@ end
 --- Columnia shapes
 --------------------------
 
+-- From mod Columnia (2014 by Glunggi), LGPL 2.1
+
 function facade.register_columnia_mid(modname, subname, recipeitem, desc)
 	minetest.register_node("facade:" .. subname .. "_columnia_mid", {
 		description = desc .. " Column Middle",
