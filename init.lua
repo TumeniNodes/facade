@@ -539,14 +539,157 @@ function facade.register_corner_bricks(modname, subname, recipeitem, desc)
 					{-0.5625, 0, 0.4375, 0.5, 0.5, 0.5},
 				},
 			},
---			selection_box = {
---				type = "fixed",
---				fixed = {
---					{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
---				},
---			},
 		})
 	end
+end
+
+
+--------------------------
+--- Columnia shapes
+--------------------------
+
+function facade.register_columnia_mid(modname, subname, recipeitem, desc)
+	minetest.register_node("facade:" .. subname .. "_columnia_mid", {
+		description = desc .. " Column Middle",
+		drawtype = "nodebox",
+		tiles = {"" .. modname.. "_" .. subname .. ".png"},
+		paramtype = "light",
+		paramtype2 = "facedir",
+		is_ground_content = false,
+		groups = {cracky = 3, oddly_breakable_by_hand = 2, stone = 1},
+		sounds = default.node_sound_stone_defaults(),
+		on_place = minetest.rotate_node,
+		node_box = {
+			type = "fixed",
+			fixed = {
+			     {-0.25, -0.5, -0.25, 0.25, 0.5, 0.25},
+		    },
+		},
+	})
+end
+
+-- Normally, a single shape should be fine both for bottom and top parts of
+-- a column. If materials with textures that don't match with themselves 
+-- when rotated upside-down are added later on, then enable the next function.
+function facade.register_columnia_bottom(modname, subname, recipeitem, desc)
+	minetest.register_node("facade:" .. subname .. "_columnia_bottom", {
+		description = desc .. " Column Bottom/Top",
+		drawtype = "nodebox",
+		tiles = {"" .. modname.. "_" .. subname .. ".png"},
+		paramtype = "light",
+		paramtype2 = "facedir",
+		is_ground_content = false,
+		groups = {cracky = 3, oddly_breakable_by_hand = 2, stone = 1},
+		sounds = default.node_sound_stone_defaults(),
+		on_place = minetest.rotate_node,
+		node_box = {
+			type = "fixed",
+			fixed = {
+			    {-0.25, -0.5, -0.25, 0.25, 0.5, 0.25},
+			    {-0.5, -0.5, -0.5, 0.5, -0.25, 0.5},
+			    {-0.375, -0.5, -0.375, 0.375, 0, 0.375},
+            },
+		},
+	})
+end
+
+--[[
+-- This function is commented out, because in current state, when facade mod
+-- uses materials without directional textures, having one shape for top
+-- and bottom of columns is enough. However, for materials which have textures
+-- that, when rotated, clearly stop matching the other blocks, this function
+-- is preserved.
+function facade.register_columnia_top(modname, subname, recipeitem, desc)
+	-- whitelist items with textures of clear directionality (e.g. bricks)
+	if string.match(recipeitem, "brick")
+	then	
+		minetest.register_node("facade:" .. subname .. "_columnia_top", {
+			description = desc .. " Column Top/Bottom",
+			drawtype = "nodebox",
+			tiles = {"" .. modname.. "_" .. subname .. ".png"},
+			paramtype = "light",
+			paramtype2 = "facedir",
+			is_ground_content = false,
+			groups = {cracky = 3, oddly_breakable_by_hand = 2, stone = 1},
+			sounds = default.node_sound_stone_defaults(),
+			on_place = minetest.rotate_node,
+			node_box = {
+				type = "fixed",
+				fixed = {
+				   {-0.25, -0.5, -0.25, 0.25, 0.5, 0.25},
+				   {-0.5, 0.25, -0.5, 0.5, 0.5, 0.5}, 
+				   {-0.375, 0, -0.375, 0.375, 0.5, 0.375},
+			    },
+			},
+		})
+	end
+end
+]]--
+
+function facade.register_columnia_crosslink(modname, subname, recipeitem, desc)
+	minetest.register_node("facade:" .. subname .. "_columnia_crosslink", {
+		description = desc .. " Column Crosslink",
+		drawtype = "nodebox",
+		tiles = {"" .. modname.. "_" .. subname .. ".png"},
+		paramtype = "light",
+		paramtype2 = "facedir",
+		is_ground_content = false,
+		groups = {cracky = 3, oddly_breakable_by_hand = 2, stone = 1},
+		sounds = default.node_sound_stone_defaults(),
+		on_place = minetest.rotate_node,
+		node_box = {
+			type = "fixed",
+			fixed = {
+			   {-0.25, -0.5, -0.25, 0.25, 0.5, 0.25},
+			   {-0.5, 0, -0.25, 0.5, 0.5, 0.25},
+			   {-0.25, 0, -0.5, 0.25, 0.5, 0.5},
+			   {-0.4375, 0.0625, -0.4375, 0.4375, 0.4375, 0.4375},
+		    },
+		},
+	})
+end
+
+function facade.register_columnia_link(modname, subname, recipeitem, desc)
+	minetest.register_node("facade:" .. subname .. "_columnia_link", {
+		description = desc .. " Column Link",
+		drawtype = "nodebox",
+		tiles = {"" .. modname.. "_" .. subname .. ".png"},
+		paramtype = "light",
+		paramtype2 = "facedir",
+		is_ground_content = false,
+		groups = {cracky = 3, oddly_breakable_by_hand = 2, stone = 1},
+		sounds = default.node_sound_stone_defaults(),
+		on_place = minetest.rotate_node,
+		node_box = {
+			type = "fixed",
+			fixed = {
+			    {-0.25, 0, -0.5, 0.25, 0.5, 0.5},
+		    },
+		},
+	})
+end
+
+function facade.register_columnia_linkdown(modname, subname, recipeitem, desc)
+	minetest.register_node("facade:" .. subname .. "_columnia_linkdown", {
+		description = desc .. " Column Linkdown",
+		drawtype = "nodebox",
+		tiles = {"" .. modname.. "_" .. subname .. ".png"},
+		paramtype = "light",
+		paramtype2 = "facedir",
+		is_ground_content = false,
+		groups = {cracky = 3, oddly_breakable_by_hand = 2, stone = 1},
+		sounds = default.node_sound_stone_defaults(),
+		on_place = minetest.rotate_node,
+		node_box = {
+			type = "fixed",
+			fixed = {
+			   {-0.25, 0, -0.5, 0.25, 0.5, 0.5},
+			   {-0.125, -0.5, -0.125, 0.125, 0, 0.125},
+			   {-0.1875, -0.5, -0.1875, 0.1875, -0.375, 0.1875},
+			   {-0.1875, -0.125, -0.1875, 0.1875, 0, 0.1875},
+		    },
+		},
+	})
 end
 
 
@@ -568,6 +711,13 @@ function facade.register_facade_nodes(modname, subname, recipeitem, desc)
 	facade.register_rgspro_inner_corner(modname, subname, recipeitem, desc)
 	facade.register_rgspro_outer_corner(modname, subname, recipeitem, desc)
 	facade.register_corner_bricks(modname, subname, recipeitem, desc)
+	--
+	facade.register_columnia_mid(modname, subname, recipeitem, desc)
+	facade.register_columnia_bottom(modname, subname, recipeitem, desc)
+	--facade.register_columnia_top(modname, subname, recipeitem, desc)
+	facade.register_columnia_crosslink(modname, subname, recipeitem, desc)
+	facade.register_columnia_link(modname, subname, recipeitem, desc)
+	facade.register_columnia_linkdown(modname, subname, recipeitem, desc)
 	if wehavechisels then                                                       -- register all nodes with mychisel mod to use them without creative priv
 		chisel.register_node("facade",subname, recipeitem, "bannerstone")
 		chisel.register_node("facade",subname, recipeitem, "bannerstone_corner")
@@ -583,8 +733,13 @@ function facade.register_facade_nodes(modname, subname, recipeitem, desc)
 		chisel.register_node("facade",subname, recipeitem, "rgspro_inner_corner")
 		chisel.register_node("facade",subname, recipeitem, "rgspro_outer_corner")
 		chisel.register_node("facade",subname, recipeitem, "corner_bricks")
-		
-		
+		--
+		chisel.register_node("facade",subname, recipeitem, "columnia_mid")
+		chisel.register_node("facade",subname, recipeitem, "columnia_bottom")
+		--chisel.register_node("facade",subname, recipeitem, "columnia_top")
+		chisel.register_node("facade",subname, recipeitem, "columnia_crosslink")
+		chisel.register_node("facade",subname, recipeitem, "columnia_link")
+		chisel.register_node("facade",subname, recipeitem, "columnia_linkdown")
 	end
 end
 
