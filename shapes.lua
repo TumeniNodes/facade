@@ -554,6 +554,37 @@ end
 -- These shapes should not be registered if the regular columnia mod is in use
 if not minetest.get_modpath("columnia") then
 
+	local columnia_rotate = function(itemstack, placer, pointed_thing)
+		if pointed_thing.type ~= "node" then
+			return itemstack
+		end
+
+		local p0 = pointed_thing.under
+		local p1 = pointed_thing.above
+		local param2 = 0
+
+		local placer_pos = placer:getpos()
+		if placer_pos then
+			local dir = {
+				x = p1.x - placer_pos.x,
+				y = p1.y - placer_pos.y,
+				z = p1.z - placer_pos.z
+			}
+			param2 = minetest.dir_to_facedir(dir)
+		end
+
+		if p0.y-1 == p1.y then
+			param2 = param2 + 20
+			if param2 == 21 then
+				param2 = 23
+			elseif param2 == 23 then
+				param2 = 21
+			end
+		end
+
+		return minetest.item_place(itemstack, placer, pointed_thing, param2)
+	end
+	
 	-- Node will be called facade:<subname>_columnia_mid
 	function facade.register_columnia_mid(modname, subname, recipeitem, desc)
 		minetest.register_node("facade:" .. subname .. "_columnia_mid", {
@@ -646,7 +677,7 @@ if not minetest.get_modpath("columnia") then
 			is_ground_content = false,
 			groups = {cracky = 3, oddly_breakable_by_hand = 2, stone = 1},
 			sounds = default.node_sound_stone_defaults(),
-			on_place = minetest.rotate_node,
+			on_place = columnia_rotate,
 			node_box = {
 				type = "fixed",
 				fixed = {
@@ -670,7 +701,7 @@ if not minetest.get_modpath("columnia") then
 			is_ground_content = false,
 			groups = {cracky = 3, oddly_breakable_by_hand = 2, stone = 1},
 			sounds = default.node_sound_stone_defaults(),
-			on_place = minetest.rotate_node,
+			on_place = columnia_rotate,
 			node_box = {
 				type = "fixed",
 				fixed = {
@@ -691,7 +722,7 @@ if not minetest.get_modpath("columnia") then
 			is_ground_content = false,
 			groups = {cracky = 3, oddly_breakable_by_hand = 2, stone = 1},
 			sounds = default.node_sound_stone_defaults(),
-			on_place = minetest.rotate_node,
+			on_place = columnia_rotate,
 			node_box = {
 				type = "fixed",
 				fixed = {
