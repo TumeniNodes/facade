@@ -646,3 +646,6 @@ end
 	facade.register_facade_nodes("lapis", "lapis_block", "lapis:lapis_block", "Lapis")
 	facade.register_facade_nodes("lapis", "lapis_lazurite", "lapis:lazurite", "Lazurite")
 end]]--
+
+-- Add a dedicated machine to produce the facade shapes
+dofile (minetest.get_modpath("facade") .. "/shaper.lua")
