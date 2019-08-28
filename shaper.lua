@@ -22,6 +22,12 @@ local output_ratios = {
 	rgspro_inner_corner = 1,
 	rgspro_outer_corner = 1,
 	corner_bricks = 2,
+	columnia_mid = 4,
+	columnia_bottom = 1,
+	columnia_top = 1,
+	columnia_crosslink = 1,
+	columnia_link = 4,
+	columnia_linkdown = 4,
 }
 
 -- The material to be used for buttons when no material is actually loaded.
@@ -62,12 +68,29 @@ local function prepare_formspec (material_name)
 	"item_image_button[1,2.5;1,1;" .. output .. "_rgspro_inner_corner" .. ";rgspro_inner_corner; ]"..
 	"item_image_button[2,2.5;1,1;" .. output .. "_rgspro_outer_corner" .. ";rgspro_outer_corner; ]"
 
-	-- row for shapes which are not available for all materials
+	-- row 4, columnia
+	if not minetest.get_modpath("columnia") then
+		shaper_formspec = shaper_formspec ..
+		"item_image_button[0,3.5;1,1;" .. output .. "_columnia_mid" .. ";columnia_mid; ]"..
+		"item_image_button[1,3.5;1,1;" .. output .. "_columnia_bottom" .. ";columnia_bottom; ]"..
+		"item_image_button[2,3.5;1,1;" .. output .. "_columnia_crosslink" .. ";columnia_crosslink; ]"..
+		"item_image_button[3,3.5;1,1;" .. output .. "_columnia_link" .. ";columnia_link; ]"..
+		"item_image_button[4,3.5;1,1;" .. output .. "_columnia_linkdown" .. ";columnia_linkdown; ]"
+
+		-- this code is a provision in case top column pieces enter service
+		if minetest.registered_nodes[output .. "_columnia_top"] then
+			shaper_formspec = shaper_formspec .. 
+			"item_image_button[5,3.5;1,1;" .. output .. "_columnia_top" .. ";columnia_top; ]"
+		end
+
+	end
+
+	-- row 5 for shapes which are not available for all materials
 	-- only one such shape exists so far, but more should be easy to add here
 
 	if minetest.registered_nodes[output .. "_corner_bricks"] then
 		shaper_formspec = shaper_formspec .. 
-			"item_image_button[0,3.5;1,1;" .. output .. "_corner_bricks" .. ";corner_bricks; ]"
+		"item_image_button[0,4.5;1,1;" .. output .. "_corner_bricks" .. ";corner_bricks; ]"
 	end
 	
 	-- inventory part
