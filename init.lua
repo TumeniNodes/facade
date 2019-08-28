@@ -1,6 +1,6 @@
 facade = {}
 
-local wehavechisels =  minetest.get_modpath("mychisel")
+local wehavechisels =  minetest.get_modpath("mychisel") and minetest.global_exists("chisel")
 
 --------------
 --Bannerstones
@@ -422,8 +422,8 @@ function facade.register_rgspro(modname, subname, recipeitem, desc)
 		node_box = {
 			type = "fixed",
 			fixed = {
-				{-0.5, -0.5, 0.375, 0.5, -0.3125, 0.5},
-				{-0.5, -0.3125, 0.25, 0.5, -0.125, 0.5},
+				{-0.5, -0.5, 0.375, 0.5, 0.5, 0.5},
+				{-0.5, -0.3125, 0.25, 0.5, 0.5, 0.5},
 				{-0.5, -0.125, 0.125, 0.5, 0.5, 0.5},
 			},
 		},
@@ -456,11 +456,11 @@ function facade.register_rgspro_inner_corner(modname, subname, recipeitem, desc)
 		node_box = {
 			type = "fixed",
 			fixed = {
-				{-0.5, -0.5, 0.375, 0.5, -0.3125, 0.5},
-				{-0.5, -0.3125, 0.25, 0.5, -0.125, 0.5},
+				{-0.5, -0.5, 0.375, 0.5, 0.5, 0.5},
+				{-0.5, -0.3125, 0.25, 0.5, 0.5, 0.5},
 				{-0.5, -0.125, 0.125, 0.5, 0.5, 0.5},
-				{0.375, -0.5, -0.5, 0.5, -0.3125, 0.375},
-				{0.25, -0.3125, -0.5, 0.5, -0.0625, 0.25},
+				{0.375, -0.5, -0.5, 0.5, 0.5, 0.375},
+				{0.25, -0.3125, -0.5, 0.5, 0.5, 0.25},
 				{0.125, -0.125, -0.5, 0.5, 0.5, 0.125},
 			},
 		},
@@ -494,11 +494,11 @@ function facade.register_rgspro_outer_corner(modname, subname, recipeitem, desc)
 		node_box = {
 			type = "fixed",
 			fixed = {
-				{-0.5, -0.5, 0.375, 0.5, -0.3125, 0.5},
-				{-0.5, -0.3125, 0.25, 0.5, -0.0625, 0.5},
+				{-0.5, -0.5, 0.375, 0.5, 0.5, 0.5},
+				{-0.5, -0.3125, 0.25, 0.5, 0.5, 0.5},
 				{-0.5, -0.125, 0.125, 0.5, 0.5, 0.5},
-				{-0.625, -0.5, 0.375, -0.5, -0.3125, 1.5},
-				{-0.75, -0.3125, 0.25, -0.5, -0.125, 1.5},
+				{-0.625, -0.5, 0.375, -0.5, 0.5, 1.5},
+				{-0.75, -0.3125, 0.25, -0.5, 0.5, 1.5},
 				{-0.875, -0.125, 0.125, -0.5, 0.5, 1.5},
 			},
 		},
@@ -583,8 +583,8 @@ function facade.register_facade_nodes(modname, subname, recipeitem, desc)
 		chisel.register_node("facade",subname, recipeitem, "rgspro_inner_corner")
 		chisel.register_node("facade",subname, recipeitem, "rgspro_outer_corner")
 		chisel.register_node("facade",subname, recipeitem, "corner_bricks")
-		
-		
+
+
 	end
 end
 
