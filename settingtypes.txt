@@ -1,0 +1,2 @@
+facade.in_creative_inventory (Facades show in inventory) bool true
+facade.protect_inventories (Facade shaper is protected) bool false
