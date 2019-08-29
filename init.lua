@@ -18,12 +18,12 @@ local function register_node(modname, subname, variant, def)
 	local existing_def	= minetest.registered_nodes[("%s:%s"):format(modname, subname)] or {}
 
 	def.drawtype		  = "nodebox"
-	def.paramtype		 = "light"
-	def.paramtyp2		 = "facedir"
+	def.paramtype		  = "light"
+	def.paramtype2		  = "facedir"
 	def.is_ground_content = false
 	def.light_source	  = existing_def.light_source
-	def.sounds			= existing_def.sounds or default.node_sound_stone_defaults()
-	def.groups			= table_clone(existing_def.groups or { cracky = 3, oddly_breakable_by_hand = 2, stone = 1 })
+	def.sounds			  = existing_def.sounds or default.node_sound_stone_defaults()
+	def.groups			  = table_clone(existing_def.groups or { cracky = 3, oddly_breakable_by_hand = 2, stone = 1 })
 	if not in_creative then
 		def.groups.not_in_creative_inventory = 1
 	end
