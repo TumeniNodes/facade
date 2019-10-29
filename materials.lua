@@ -1,11 +1,11 @@
 -- Registration of materials
 
 facade.register_facade_nodes("default", "clay", "default:clay", "Clay")
-facade.register_facade_nodes("default", "desert_sandstone", "default:desert_sandstone", "Desert Sandstone")
+facade.register_facade_nodes("default", "stone", "default:stone", "Stone")
 facade.register_facade_nodes("default", "desert_stone", "default:desert_stone", "Desert Stone")
 facade.register_facade_nodes("default", "sandstone", "default:sandstone", "Sandstone")
+facade.register_facade_nodes("default", "desert_sandstone", "default:desert_sandstone", "Desert Sandstone")
 facade.register_facade_nodes("default", "silver_sandstone", "default:silver_sandstone", "Silver Sandstone")
-facade.register_facade_nodes("default", "stone", "default:stone", "Stone")
 --facade.register_facade_nodes("default", "obsidian", "default:obsidian", "Obsidian")
 
 
@@ -33,6 +33,7 @@ if minetest.get_modpath("bakedclay") then
 	end
 end
 
+
 if minetest.get_modpath("darkage") then
 	facade.register_facade_nodes("darkage", "basalt", "darkage:basalt", "Basalt")
 	facade.register_facade_nodes("darkage", "chalk", "darkage:chalk", "Chalk")
@@ -45,9 +46,11 @@ if minetest.get_modpath("darkage") then
 	facade.register_facade_nodes("darkage", "slate", "darkage:slate", "Slate")
 end
 
-if minetest.get_modpath("nether") then
+
+if minetest.get_modpath( "nether") then
 	facade.register_facade_nodes("nether", "rack", "nether:rack", "Netherrack")
 end
+
 
 --[[if minetest.get_modpath( "lapis") then
 	facade.register_facade_nodes("lapis", "lapis_block", "lapis:lapis_block", "Lapis")

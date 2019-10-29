@@ -32,6 +32,7 @@ local function register_node(modname, subname, variant, def)
 	minetest.register_node(node_name, def)
 end
 
+
 --------------
 --Bannerstones
 --------------
@@ -442,6 +443,7 @@ end
 
 --Node will be called facade:<subname>_corner_bricks
 function facade.register_corner_bricks(modname, subname, recipeitem, desc)
+	
 	local brick_exists = (
 			minetest.registered_nodes[("%s:%s_brick"):format(modname, subname)] or
 			minetest.registered_nodes[("%s:%sbrick"):format(modname, subname)]
@@ -622,12 +624,11 @@ if not minetest.get_modpath("columnia") then
 
 end
 
---------------------------
---Register Nodes/Materials
---------------------------
+
 --------------------------
 --Register Nodes
 --------------------------
+		
 function facade.register_facade_nodes(modname, subname, recipeitem, desc)
 	
 	facade.register_bannerstone(modname, subname, recipeitem, desc)
@@ -684,3 +685,5 @@ end
 
 -- register the total number of different designs in this mod with mychisel
 if wehavechisels then chisel.add_mod("facade",14) end
+
+
