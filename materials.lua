@@ -9,32 +9,32 @@ facade.register_facade_nodes("default", "silver_sandstone", "default:silver_sand
 --facade.register_facade_nodes("default", "obsidian", "default:obsidian", "Obsidian")
 
 
-if minetest.get_modpath( "bakedclay") then
-   local clay = {
-      {"white", "White"},
-      {"grey", "Grey"},
-      {"black", "Black"},
-      {"red", "Red"},
-      {"yellow", "Yellow"},
-      {"green", "Green"},
-      {"cyan", "Cyan"},
-      {"blue", "Blue"},
-      {"magenta", "Magenta"},
-      {"orange", "Orange"},
-      {"violet", "Violet"},
-      {"brown", "Brown"},
-      {"pink", "Pink"},
-      {"dark_grey", "Dark Grey"},
-      {"dark_green", "Dark Green"},
-   }
+if minetest.get_modpath("bakedclay") then
+	local clays = {
+		{ "white", "White" },
+		{ "grey", "Grey" },
+		{ "black", "Black" },
+		{ "red", "Red" },
+		{ "yellow", "Yellow" },
+		{ "green", "Green" },
+		{ "cyan", "Cyan" },
+		{ "blue", "Blue" },
+		{ "magenta", "Magenta" },
+		{ "orange", "Orange" },
+		{ "violet", "Violet" },
+		{ "brown", "Brown" },
+		{ "pink", "Pink" },
+		{ "dark_grey", "Dark Grey" },
+		{ "dark_green", "Dark Green" },
+	}
 
-   for _, clay in pairs(clay) do
-      facade.register_facade_nodes("baked_clay", clay[1] , "bakedclay:" .. clay[1], clay[2] .. " Baked Clay")
-   end
+	for _, clay in pairs(clays) do
+		facade.register_facade_nodes("baked_clay", clay[1], "bakedclay:" .. clay[1], clay[2] .. " Baked Clay")
+	end
 end
 
 
-if minetest.get_modpath( "darkage") then
+if minetest.get_modpath("darkage") then
 	facade.register_facade_nodes("darkage", "basalt", "darkage:basalt", "Basalt")
 	facade.register_facade_nodes("darkage", "chalk", "darkage:chalk", "Chalk")
 	facade.register_facade_nodes("darkage", "gneiss", "darkage:gneiss", "Gneiss")
