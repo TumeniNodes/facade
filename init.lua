@@ -1,4 +1,4 @@
-facade			  = {}
+facade  = {}
 
 local wehavechisels = minetest.get_modpath("mychisel") and minetest.global_exists("chisel")
 local in_creative   = (minetest.settings:get("facade.in_creative_inventory") or "true"):lower() == "true"
@@ -17,13 +17,14 @@ local function register_node(modname, subname, variant, def)
 
 	local existing_def	= minetest.registered_nodes[("%s:%s"):format(modname, subname)] or {}
 
-	def.drawtype		  = "nodebox"
-	def.paramtype		  = "light"
-	def.paramtype2		  = "facedir"
-	def.is_ground_content = false
-	def.light_source	  = existing_def.light_source
-	def.sounds			  = existing_def.sounds or default.node_sound_stone_defaults()
-	def.groups			  = table_clone(existing_def.groups or { cracky = 3, oddly_breakable_by_hand = 2, stone = 1 })
+	def.drawtype		= "nodebox"
+	def.paramtype		= "light"
+	def.paramtype2		= "facedir"
+	def.is_ground_content	= false
+	def.light_source	 	= existing_def.light_source
+	def.sounds			= existing_def.sounds or default.node_sound_stone_defaults()
+	def.groups			= table_clone(existing_def.groups or { cracky = 3, oddly_breakable_by_hand = 2, stone = 1 })
+	
 	if not in_creative then
 		def.groups.not_in_creative_inventory = 1
 	end
@@ -502,7 +503,7 @@ function facade.register_facade_nodes(modname, subname, recipeitem, desc)
 	end
 end
 
-if wehavechisels then chisel.add_mod("facade", 14) end								-- register the total number of different designs in this mod with mychisel
+if wehavechisels then chisel.add_mod("facade", 14) end -- register the total number of different designs in this mod with mychisel
 
 facade.register_facade_nodes("default", "clay", "default:clay", "Clay")
 facade.register_facade_nodes("default", "desert_sandstone", "default:desert_sandstone", "Desert Sandstone")

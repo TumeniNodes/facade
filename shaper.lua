@@ -6,74 +6,74 @@
 -- Balancing output per 1 input block with respect to apparent volume of output shape.
 -- All current shapes are added, but shapes not present in this table will still be produced
 -- one at a time — if that is the desired quantity, adding them is not required.
-local output_ratios	   = {
-	bannerstone		   = 1,
-	bannerstone_corner	= 1,
-	centerstone		   = 1,
-	column				= 1,
-	column_corner		 = 1,
-	corbel				= 1,
-	corbel_corner		 = 1,
+local output_ratios = {
+	bannerstone           = 1,
+	bannerstone_corner    = 1,
+	centerstone           = 1,
+	column                = 1,
+	column_corner         = 1,
+	corbel                = 1,
+	corbel_corner         = 1,
 	corbel_corner_inner   = 1,
-	carved_stone_a		= 1,
+	carved_stone_a        = 1,
 	carved_stone_a_corner = 1,
-	rgspro				= 2,
+	rgspro                = 2,
 	rgspro_inner_corner   = 1,
 	rgspro_outer_corner   = 1,
-	corner_bricks		 = 2,
+	corner_bricks         = 2,
 }
 
 -- The material to be used for buttons when no material is actually loaded.
 -- It should be a generic material for which all the facade shapes are defined.
-local demo_material	   = "default:stone"
+local demo_material = "default:stone"
 
 -- Whether the facade should obey area protection for the inventories (as machines in technic mod)
 -- or allow anybody to use them, but disallow the removal of machine itself (like circular saw in moreblocks)
 local protect_inventories = (minetest.settings:get("facade.protect_inventories") or "false"):lower() == "false"
 
 local function prepare_formspec(material_name)
-	local output		  = string.gsub(material_name, "^.*:", "facade:")
+	local output = string.gsub(material_name, "^.*:", "facade:")
 	local shaper_formspec = "size[8,11;]" ..
-			"label[0,0;" .. "Choose shape to produce:" .. "]" ..
+		"label[0,0;" .. "Choose shape to produce:" .. "]" ..
 
-			-- row 1, blocky shapes
-			"item_image_button[0,0.5;1,1;" .. output .. "_bannerstone" .. ";bannerstone; ]" ..
-			"item_image_button[1,0.5;1,1;" .. output .. "_bannerstone_corner" .. ";bannerstone_corner; ]" ..
-			"item_image_button[2,0.5;1,1;" .. output .. "_centerstone" .. ";centerstone; ]" ..
-			"item_image_button[3,0.5;1,1;" .. output .. "_carved_stone_a" .. ";carved_stone_a; ]" ..
-			"item_image_button[4,0.5;1,1;" .. output .. "_carved_stone_a_corner" .. ";carved_stone_a_corner; ]" ..
-			"item_image_button[5,0.5;1,1;" .. output .. "_column" .. ";column; ]" ..
-			"item_image_button[6,0.5;1,1;" .. output .. "_column_corner" .. ";column_corner; ]" ..
+		-- row 1, blocky shapes
+		"item_image_button[0,0.5;1,1;" .. output .. "_bannerstone" .. ";bannerstone; ]" ..
+		"item_image_button[1,0.5;1,1;" .. output .. "_bannerstone_corner" .. ";bannerstone_corner; ]" ..
+		"item_image_button[2,0.5;1,1;" .. output .. "_centerstone" .. ";centerstone; ]" ..
+		"item_image_button[3,0.5;1,1;" .. output .. "_carved_stone_a" .. ";carved_stone_a; ]" ..
+		"item_image_button[4,0.5;1,1;" .. output .. "_carved_stone_a_corner" .. ";carved_stone_a_corner; ]" ..
+		"item_image_button[5,0.5;1,1;" .. output .. "_column" .. ";column; ]" ..
+		"item_image_button[6,0.5;1,1;" .. output .. "_column_corner" .. ";column_corner; ]" ..
 
-			-- row 2, corbel
-			"item_image_button[0,1.5;1,1;" .. output .. "_corbel" .. ";corbel; ]" ..
-			"item_image_button[1,1.5;1,1;" .. output .. "_corbel_corner_inner" .. ";corbel_corner_inner; ]" ..
-			"item_image_button[2,1.5;1,1;" .. output .. "_corbel_corner" .. ";corbel_corner; ]" ..
+		-- row 2, corbel
+		"item_image_button[0,1.5;1,1;" .. output .. "_corbel" .. ";corbel; ]" ..
+		"item_image_button[1,1.5;1,1;" .. output .. "_corbel_corner_inner" .. ";corbel_corner_inner; ]" ..
+		"item_image_button[2,1.5;1,1;" .. output .. "_corbel_corner" .. ";corbel_corner; ]" ..
 
-			-- row 3, cornice
-			"item_image_button[0,2.5;1,1;" .. output .. "_rgspro" .. ";rgspro; ]" ..
-			"item_image_button[1,2.5;1,1;" .. output .. "_rgspro_inner_corner" .. ";rgspro_inner_corner; ]" ..
-			"item_image_button[2,2.5;1,1;" .. output .. "_rgspro_outer_corner" .. ";rgspro_outer_corner; ]"
+		-- row 3, cornice
+		"item_image_button[0,2.5;1,1;" .. output .. "_rgspro" .. ";rgspro; ]" ..
+		"item_image_button[1,2.5;1,1;" .. output .. "_rgspro_inner_corner" .. ";rgspro_inner_corner; ]" ..
+		"item_image_button[2,2.5;1,1;" .. output .. "_rgspro_outer_corner" .. ";rgspro_outer_corner; ]"
 
 	-- row for shapes which are not available for all materials
 	-- only one such shape exists so far, but more should be easy to add here
 	if minetest.registered_nodes[output .. "_corner_bricks"] then
 		shaper_formspec = shaper_formspec ..
-				"item_image_button[0,3.5;1,1;" .. output .. "_corner_bricks" .. ";corner_bricks; ]"
+		"item_image_button[0,3.5;1,1;" .. output .. "_corner_bricks" .. ";corner_bricks; ]"
 	end
 
 	-- inventory part
 	shaper_formspec = shaper_formspec ..
-			"label[0, 5.5;" .. "In:" .. "]" ..
-			"list[current_name;src;1,5.5;1,1;]" ..
-			"label[3, 5.5;" .. "Out:" .. "]" ..
-			"list[current_name;dst;4,5.5;4,1;]" ..
+		"label[0, 5.5;" .. "In:" .. "]" ..
+		"list[current_name;src;1,5.5;1,1;]" ..
+		"label[3, 5.5;" .. "Out:" .. "]" ..
+		"list[current_name;dst;4,5.5;4,1;]" ..
 
-			"list[current_player;main;0,7;8,4;]" ..
-			"listring[current_name;dst]" ..
-			"listring[current_player;main]" ..
-			"listring[current_name;src]" ..
-			"listring[current_player;main]"
+		"list[current_player;main;0,7;8,4;]" ..
+		"listring[current_name;dst]" ..
+		"listring[current_player;main]" ..
+		"listring[current_name;src]" ..
+		"listring[current_player;main]"
 
 	return shaper_formspec
 end
@@ -253,9 +253,9 @@ local function after_place_node(pos, placer)
 end
 
 minetest.register_node("facade:shaper", {
-	description				   = "Shaper Machine",
-	drawtype					  = "nodebox",
-	node_box					  = {
+	description  = "Shaper Machine",
+	drawtype = "nodebox",
+	node_box = {
 		type  = "fixed",
 		fixed = {
 			-- base
@@ -276,38 +276,38 @@ minetest.register_node("facade:shaper", {
 			{ -1 / 128, 6 / 32, -1 / 32, 1 / 128, 7 / 32, 1 / 32 },
 		},
 	},
-	selection_box				 = {
+	selection_box = {
 		type  = "fixed",
 		fixed = {
 			{ -1 / 2, -1 / 2, -1 / 2, 1 / 2, 1 / 2, 1 / 2 },
 		},
 	},
-	tiles						 = { "facade_shaper_top.png",
-									  "facade_shaper_bottom.png",
-									  "facade_shaper_right.png",
-									  "facade_shaper_left.png",
-									  "facade_shaper_back.png",
-									  "facade_shaper_front.png" },
-	groups						= { oddly_breakable_by_hand = 2, cracky = 3, dig_immediate = 1 },
-	paramtype					 = "light",
-	paramtype2					= "facedir",
-	legacy_facedir_simple		 = true,
-	on_construct				  = on_construct,
-	after_place_node			  = after_place_node,
-	can_dig					   = check_removability,
+	tiles = {	"facade_shaper_top.png",
+			"facade_shaper_bottom.png",
+			"facade_shaper_right.png",
+			"facade_shaper_left.png",
+			"facade_shaper_back.png",
+			"facade_shaper_front.png" },
+	groups = { oddly_breakable_by_hand = 2, cracky = 3, dig_immediate = 1 },
+	paramtype = "light",
+	paramtype2 = "facedir",
+	legacy_facedir_simple = true,
+	on_construct = on_construct,
+	after_place_node = after_place_node,
+	can_dig = check_removability,
 	allow_metadata_inventory_put  = check_inventory_put,
 	allow_metadata_inventory_take = check_inventory_take,
 	allow_metadata_inventory_move = check_inventory_move,
-	on_metadata_inventory_put	 = update_formspec_put,
-	on_metadata_inventory_take	= update_formspec_take,
-	on_receive_fields			 = form_handler,
+	on_metadata_inventory_put = update_formspec_put,
+	on_metadata_inventory_take = update_formspec_take,
+	on_receive_fields = form_handler,
 })
 
 minetest.register_craft({
 	output = 'facade:shaper',
 	recipe = {
-		{ '',					'default:diamond',	'' },
+		{ '',                    'default:diamond',    ''                    },
 		{ 'default:steel_ingot', 'default:steelblock', 'default:steel_ingot' },
-		{ '',					'default:steelblock', '' },
+		{ '',                    'default:steelblock', ''                    },
 	},
 })
