@@ -1,11 +1,15 @@
 # Facade
+
+[![](https://github.com/TumeniNodes/facade/workflows/Check%20&%20Release/badge.svg)](https://github.com/TumeniNodes/facade/actions)
+[![License](https://img.shields.io/badge/license-LGPLv2.1%2B-blue.svg)](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html)
+
 Adds decorative clay and stone-type nodes to Minetest Game.
 
 ## Dependencies
 - default (included in minetest_game)
 - [mychisel](https://github.com/minetest-mods/mychisel) (**optional dependency!**)
 
-## Requierments
+## Requirements
 This requieres MT/MTG 0.4.16+ to run (may work on older versions).
 
 ## License

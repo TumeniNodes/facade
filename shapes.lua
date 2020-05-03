@@ -547,7 +547,7 @@ end
 --------------------------
 --- Columnia shapes
 --------------------------
-		
+
 -- From mod Columnia (2014 by Glunggi), LGPL 2.1
 -- The shapes are using stock minetest.rotate_node() for positioning.
 
@@ -584,7 +584,7 @@ if not minetest.get_modpath("columnia") then
 
 		return minetest.item_place(itemstack, placer, pointed_thing, param2)
 	end
-	
+
 	-- Node will be called facade:<subname>_columnia_mid
 	function facade.register_columnia_mid(modname, subname, recipeitem, desc)
 		minetest.register_node("facade:" .. subname .. "_columnia_mid", {
@@ -607,7 +607,7 @@ if not minetest.get_modpath("columnia") then
 	end
 
 	-- Normally, a single shape should be fine both for bottom and top parts of
-	-- a column. If materials with textures that don't match with themselves 
+	-- a column. If materials with textures that don't match with themselves
 	-- when rotated upside-down are added later on, then enable the next function.
 	-- Node will be called facade:<subname>_columnia_bottom
 	function facade.register_columnia_bottom(modname, subname, recipeitem, desc)
@@ -642,7 +642,7 @@ if not minetest.get_modpath("columnia") then
 	function facade.register_columnia_top(modname, subname, recipeitem, desc)
 		-- whitelist items with textures of clear directionality (e.g. bricks)
 		if string.match(recipeitem, "brick")
-		then	
+		then
 			minetest.register_node("facade:" .. subname .. "_columnia_top", {
 				description = desc .. " Column Top/Bottom",
 				drawtype = "nodebox",
@@ -657,7 +657,7 @@ if not minetest.get_modpath("columnia") then
 					type = "fixed",
 					fixed = {
 						{-0.25, -0.5, -0.25, 0.25, 0.5, 0.25},
-						{-0.5, 0.25, -0.5, 0.5, 0.5, 0.5}, 
+						{-0.5, 0.25, -0.5, 0.5, 0.5, 0.5},
 						{-0.375, 0, -0.375, 0.375, 0.5, 0.375},
 					},
 				},
@@ -741,7 +741,7 @@ end
 --Register Nodes
 --------------------------
 function facade.register_facade_nodes(modname, subname, recipeitem, desc)
-	
+
 	facade.register_bannerstone(modname, subname, recipeitem, desc)
 	facade.register_bannerstone_corner(modname, subname, recipeitem, desc)
 	facade.register_centerstone(modname, subname, recipeitem, desc)
@@ -756,7 +756,7 @@ function facade.register_facade_nodes(modname, subname, recipeitem, desc)
 	facade.register_rgspro_inner_corner(modname, subname, recipeitem, desc)
 	facade.register_rgspro_outer_corner(modname, subname, recipeitem, desc)
 	facade.register_corner_bricks(modname, subname, recipeitem, desc)
-	
+
 	if not minetest.get_modpath("columnia") then
 		facade.register_columnia_mid(modname, subname, recipeitem, desc)
 		facade.register_columnia_bottom(modname, subname, recipeitem, desc)
@@ -765,7 +765,7 @@ function facade.register_facade_nodes(modname, subname, recipeitem, desc)
 		facade.register_columnia_link(modname, subname, recipeitem, desc)
 		facade.register_columnia_linkdown(modname, subname, recipeitem, desc)
 	end
-	
+
 	if wehavechisels then
 		-- register all nodes with mychisel mod to use them without creative priv
 		chisel.register_node("facade",subname, recipeitem, "bannerstone")
@@ -782,7 +782,7 @@ function facade.register_facade_nodes(modname, subname, recipeitem, desc)
 		chisel.register_node("facade",subname, recipeitem, "rgspro_inner_corner")
 		chisel.register_node("facade",subname, recipeitem, "rgspro_outer_corner")
 		chisel.register_node("facade",subname, recipeitem, "corner_bricks")
-		
+
 		if not minetest.get_modpath("columnia") then
 			chisel.register_node("facade",subname, recipeitem, "columnia_mid")
 			chisel.register_node("facade",subname, recipeitem, "columnia_bottom")

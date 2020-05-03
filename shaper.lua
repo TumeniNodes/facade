@@ -5,7 +5,7 @@
 
 
 -- Balancing output per 1 input block with respect to apparent volume of output shape.
--- All current shapes are added, but shapes not present in this table will still be produced 
+-- All current shapes are added, but shapes not present in this table will still be produced
 -- one at a time — if that is the desired quantity, adding them is not required.
 local output_ratios = {
 	bannerstone = 1,
@@ -44,7 +44,7 @@ local function prepare_formspec (material_name)
 
 	local output = string.gsub(material_name, "^.*:", "facade:")
 
-	local shaper_formspec = 
+	local shaper_formspec =
 
 	"size[8,11;]"..
 	"label[0,0;" .. "Choose shape to produce:" .. "]"..
@@ -79,7 +79,7 @@ local function prepare_formspec (material_name)
 
 		-- this code is a provision in case top column pieces enter service
 		if minetest.registered_nodes[output .. "_columnia_top"] then
-			shaper_formspec = shaper_formspec .. 
+			shaper_formspec = shaper_formspec ..
 			"item_image_button[5,3.5;1,1;" .. output .. "_columnia_top" .. ";columnia_top; ]"
 		end
 
@@ -89,10 +89,10 @@ local function prepare_formspec (material_name)
 	-- only one such shape exists so far, but more should be easy to add here
 
 	if minetest.registered_nodes[output .. "_corner_bricks"] then
-		shaper_formspec = shaper_formspec .. 
+		shaper_formspec = shaper_formspec ..
 		"item_image_button[0,4.5;1,1;" .. output .. "_corner_bricks" .. ";corner_bricks; ]"
 	end
-	
+
 	-- inventory part
 
 	shaper_formspec = shaper_formspec ..
@@ -106,10 +106,10 @@ local function prepare_formspec (material_name)
 	"listring[current_name;dst]"..
 	"listring[current_player;main]"..
 	"listring[current_name;src]"..
-	"listring[current_player;main]"	
+	"listring[current_player;main]"
 
 	return(shaper_formspec)
-	
+
 end
 
 
@@ -135,9 +135,8 @@ local function update_formspec_put (pos, listname, index, stack, player)
 	if listname ~= "src" then
 		return
 	end
-	
+
 	local meta = minetest.get_meta(pos)
-	local inv = meta:get_inventory()
 	local material_name = stack:get_name()
 
 	if check_material_applicability(material_name) then
@@ -159,7 +158,7 @@ local function update_formspec_take (pos, listname, index, stack, player)
 	if listname ~= "src" then
 		return
 	end
-	
+
 	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
 
@@ -182,9 +181,7 @@ local function check_inventory_put (pos, listname, index, stack, player)
 	if listname ~= "src" then
 		return 0
 	end
-	
-	local meta = minetest.get_meta(pos)
-	local inv = meta:get_inventory()
+
 	local material_name = stack:get_name()
 
 	if check_material_applicability(material_name) then
@@ -206,20 +203,18 @@ local function check_inventory_take (pos, listname, index, stack, player)
 	end
 
 	return(stack:get_count())
-	
+
 end
 
-
 local function check_inventory_move (pos, from_list, from_index, to_list, to_index, count, player)
-	
+
 	if protect_inventories and minetest.is_protected(pos, player:get_player_name()) then
 		return 0
 	end
 
 	return(stack:get_count())
-	
-end
 
+end
 
 -- process the form fields and convert source material to desired shapes
 local function form_handler(pos, formname, fields, sender)
@@ -228,8 +223,8 @@ local function form_handler(pos, formname, fields, sender)
 		return
 	end
 
-	if fields.quit then 
-		return 
+	if fields.quit then
+		return
 	end
 
 	local meta = minetest.get_meta(pos)
@@ -241,7 +236,7 @@ local function form_handler(pos, formname, fields, sender)
 
 	local inputstack = inv:get_stack("src", 1)
 	local inputname = inputstack:get_name()
-	
+
 	for shape,_ in pairs(fields) do
 
 		local result = string.gsub(inputname, "^.*:", "facade:") .. "_" .. shape
@@ -265,10 +260,8 @@ local function form_handler(pos, formname, fields, sender)
 		inv:add_item("dst", result)
 
 	end
-
 	return
 end
-
 
 local function check_removability (pos, player)
 
