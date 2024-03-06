@@ -329,6 +329,7 @@ minetest.register_node("facade:shaper", {
 			"facade_shaper_back.png",
 			"facade_shaper_front.png"},
 	groups = { oddly_breakable_by_hand=2, cracky=3, dig_immediate=1 },
+	is_ground_content = false,
 	paramtype = "light",
 	paramtype2  = "facedir",
 	legacy_facedir_simple = true,
